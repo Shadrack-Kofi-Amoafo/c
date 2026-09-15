@@ -1,0 +1,7 @@
+# dependencies and tool caches
+node_modules/
+__pycache__/
+*.pyc
+
+# verification scratch
+.verify-tmp/
