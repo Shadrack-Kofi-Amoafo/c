@@ -15,53 +15,53 @@ snippet's syntax was reviewed manually (see the `PARITY:` line in the notes).
 | --- | --- | --- | --- | --- | --- |
 | `py-alg-0001` | executable | python | PASS | 0.07s | python3: output matched |
 | `py-alg-0002` | executable | python | PASS | 0.03s | python3: output matched |
-| `js-alg-0003` | executable | javascript | PASS | 0.07s | node: output matched |
-| `c-alg-0004` | executable | c | PASS | 0.16s | gcc: output matched |
-| `py-alg-0005` | executable | python | PASS | 0.02s | python3: output matched |
+| `js-alg-0003` | executable | javascript | PASS | 0.09s | node: output matched |
+| `c-alg-0004` | executable | c | PASS | 0.15s | gcc: output matched |
+| `py-alg-0005` | executable | python | PASS | 0.03s | python3: output matched |
 | `py-alg-0006` | executable | python | PASS | 0.18s | python3: output matched |
-| `py-api-0001` | executable | python | PASS | 0.38s | python3: output matched |
-| `py-api-0002` | executable | python | PASS | 0.13s | python3: output matched |
-| `js-api-0003` | executable | javascript | PASS | 4.68s | node: regex '# pass 8\\n# fail 0' matched |
+| `py-api-0001` | executable | python | PASS | 0.41s | python3: output matched |
+| `py-api-0002` | executable | python | PASS | 0.12s | python3: output matched |
+| `js-api-0003` | executable | javascript | PASS | 4.67s | node: regex '# pass 8\\n# fail 0' matched |
 | `py-api-0004` | executable | python | PASS | 1.55s | python3: output matched |
-| `ts-code-0001` | executable | typescript | PASS | 0.38s | tsc: output matched |
+| `ts-code-0001` | executable | typescript | PASS | 0.34s | tsc: output matched |
 | `py-code-0002` | executable | python | PASS | 0.03s | python3: output matched |
 | `js-code-0003` | executable | javascript | PASS | 0.05s | node: regex '# pass 7\\b[\\s\\S]*# fail 0' matched |
-| `py-code-0004` | executable | python | PASS | 0.09s | python3: output matched |
+| `py-code-0004` | executable | python | PASS | 0.08s | python3: output matched |
 | `sql-code-0005` | executable | sql | PASS | 0.00s | sqlite3(py): output matched |
 | `bash-code-0006` | executable | bash | PASS | 0.44s | bash: output matched |
 | `py-read-0001` | executable | python | PASS | 0.01s | python3: output matched |
 | `js-read-0002` | executable | javascript | PASS | 0.07s | node: output matched |
 | `py-read-0003` | executable | python | PASS | 0.01s | python3: output matched |
 | `sql-read-0004` | executable | sql | PASS | 0.00s | sqlite3(py): output matched |
-| `ts-read-0005` | executable | typescript | PASS | 0.35s | tsc: output matched |
+| `ts-read-0005` | executable | typescript | PASS | 0.34s | tsc: output matched |
 | `ml-lang-0001` | executable | python | PASS | 0.23s | python3: output matched |
 | `ml-lang-0002` | executable | python | PASS | 0.07s | python3: output matched |
-| `ml-lang-0003` | executable | python | PASS | 0.21s | python3: output matched |
+| `ml-lang-0003` | executable | python | PASS | 0.20s | python3: output matched |
 | `ml-lang-0004` | executable | python | PASS | 0.07s | python3: output matched |
-| `py-ds-0001` | executable | python | PASS | 0.07s | python3: regex '\\An=65536: worst prefix=\\d+ update=\\d+ steps vs 4096 slice additions\\nPASS\\n\\Z' matched |
+| `py-ds-0001` | executable | python | PASS | 0.06s | python3: regex '\\An=65536: worst prefix=\\d+ update=\\d+ steps vs 4096 slice additions\\nPASS\\n\\Z' matched |
 | `py-ds-0002` | executable | python | PASS | 0.09s | python3: regex '\\Afind/union pointer hops: \\d+ for 80000 ops\\nPASS\\n\\Z' matched |
 | `js-ds-0003` | executable | javascript | PASS | 0.12s | node: regex '# pass 8\\n# fail 0' matched |
-| `c-ds-0004` | executable | c | PASS | 0.31s | gcc: output matched |
+| `c-ds-0004` | executable | c | PASS | 0.27s | gcc: output matched |
 | `py-ds-0005` | executable | python | PASS | 0.02s | python3: output matched |
 | `py-dbg-0001` | executable | python | PASS | 0.29s | python3: output matched |
 | `py-dbg-0002` | executable | python | PASS | 0.01s | python3: output matched |
 | `js-dbg-0003` | executable | javascript | PASS | 0.13s | node: output matched |
 | `sql-dbg-0004` | executable | sql | PASS | 0.00s | sqlite3(py): output matched |
-| `py-dbg-0005` | executable | python | PASS | 0.03s | python3: output matched |
-| `py-opt-0001` | executable | python | PASS | 0.59s | python3: regex '\\An= 200 comparisons=\\s+14042\\nn= 400 comparisons=\\s+56589\\nn= 800 comparisons=\\s+242543\\nslow=[\\d.]+ms dict=[\\d.]+ms speedup=\\d+x\\nP |
-| `py-opt-0002` | executable | python | PASS | 2.70s | python3: regex '\\Aold:\\s+[\\d.]+MB -> [\\d.]+MB\\nstream:\\s+[\\d.]+MB -> [\\d.]+MB\\ntime old=[\\d.]+ms stream=[\\d.]+ms ratio=[\\d.]+\\nPASS\\n\\Z' matched |
-| `sql-opt-0003` | executable | sql | PASS | 0.11s | sqlite3(py): output matched |
+| `py-dbg-0005` | executable | python | PASS | 0.02s | python3: output matched |
+| `py-opt-0001` | executable | python | PASS | 0.63s | python3: regex '\\An= 200 comparisons=\\s+14042\\nn= 400 comparisons=\\s+56589\\nn= 800 comparisons=\\s+242543\\nslow=[\\d.]+ms dict=[\\d.]+ms speedup=\\d+x\\nP |
+| `py-opt-0002` | executable | python | PASS | 2.58s | python3: regex '\\Aold:\\s+[\\d.]+MB -> [\\d.]+MB\\nstream:\\s+[\\d.]+MB -> [\\d.]+MB\\ntime old=[\\d.]+ms stream=[\\d.]+ms ratio=[\\d.]+\\nPASS\\n\\Z' matched |
+| `sql-opt-0003` | executable | sql | PASS | 0.10s | sqlite3(py): output matched |
 | `py-opt-0004` | executable | python | PASS | 0.06s | python3: regex '\\Aq=\\s+64 uncached_calls=\\s+127 cached_misses=\\s+7\\nq=\\s+200 uncached_calls=\\s+399 cached_misses=\\s+12\\nsubproblems: 64->7 200->12 400- |
 | `c-opt-0005` | executable | c | PASS | 0.09s | gcc: output matched |
 | `py-ref-0001` | executable | python | PASS | 0.03s | python3: output matched |
 | `js-ref-0002` | executable | javascript | PASS | 0.03s | node: output matched |
-| `py-ref-0003` | executable | python | PASS | 0.03s | python3: output matched |
-| `ts-ref-0004` | executable | typescript | PASS | 0.37s | tsc: output matched |
+| `py-ref-0003` | executable | python | PASS | 0.02s | python3: output matched |
+| `ts-ref-0004` | executable | typescript | PASS | 0.35s | tsc: output matched |
 | `py-ref-0005` | executable | python | PASS | 0.03s | python3: output matched |
-| `py-sec-0001` | executable | python | PASS | 0.70s | python3: output matched |
-| `py-sec-0002` | executable | python | PASS | 0.01s | python3: output matched |
+| `py-sec-0001` | executable | python | PASS | 0.79s | python3: output matched |
+| `py-sec-0002` | executable | python | PASS | 0.02s | python3: output matched |
 | `js-sec-0003` | executable | javascript | PASS | 0.05s | node: regex '# pass 9\\n# fail 0' matched |
-| `py-sec-0004` | executable | python | PASS | 0.06s | python3: output matched |
+| `py-sec-0004` | executable | python | PASS | 0.07s | python3: output matched |
 | `py-arch-0001` | executable | python | PASS | 0.10s | python3: output matched |
 | `py-arch-0002` | executable | python | PASS | 0.04s | python3: output matched |
 | `js-arch-0003` | executable | javascript | PASS | 0.08s | node: regex '# pass 10\\n# fail 0' matched |

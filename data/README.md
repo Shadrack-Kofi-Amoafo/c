@@ -88,3 +88,32 @@ python3 tools/verify_examples.py \
 Categories, languages, difficulties and verify kinds are validated per dataset, so
 a second corpus can have its own coverage profile (for example `go`-first
 examples verified with `kind=parity`) without weakening the checks on the first.
+
+### What dataset #2 contains
+
+`data/raw-v2/` is a code-reasoning corpus rather than a language-coverage corpus: twelve
+categories from `data/raw-v2/taxonomy.txt` (debugging, execution tracing, dependency and
+algorithmic reasoning, complexity, concurrency, memory, state management, API behaviour,
+architecture, security, edge cases), four examples each, all verified by execution
+(`48/48 passed`, `dataset-v2/verification_report.md`).
+
+```
+$ python3 tools/build_dataset.py --raw-dir data/raw-v2 --out-dir dataset-v2
+- examples: 48 | categories: 12 | verification: executable=48
+- languages: javascript=11, python=37 | difficulty: intermediate=23, advanced=23, expert=2
+$ python3 tools/verify_examples.py --dataset dataset-v2/examples.jsonl \
+      --report dataset-v2/verification_report.md
+48/48 passed, 0 failed, 0 skipped
+```
+
+The language-coverage warnings from the shared validator are expected here: dataset #1 is
+where language breadth lives, dataset #2 trades it for depth per reasoning category. Every
+example is pinned, so verification is reproducible:
+
+```bash
+python3 tools/pin_expectations.py --raw-dir data/raw-v2            # fill ?PIN? from real output
+python3 tools/pin_expectations.py --raw-dir data/raw-v2 --only sec-0003
+```
+
+`pin_expectations.py` refuses to write a pin when a program crashes or times out, so a
+failure cannot be recorded as expected output.

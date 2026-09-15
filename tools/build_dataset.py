@@ -70,6 +70,19 @@ ID_RE = re.compile(r"^[a-z]{1,4}(-[a-z0-9]+){1,4}$")
 
 #: Categories whose answers must contain runnable code.
 CODE_CATEGORIES = {
+    # the code-reasoning corpus (dataset-v2) is code-heavy as well
+    "debugging_reasoning",
+    "execution_tracing",
+    "dependency_reasoning",
+    "algorithmic_reasoning",
+    "complexity_analysis",
+    "concurrency",
+    "memory_behavior",
+    "state_management",
+    "api_behavior",
+    "architecture_reasoning",
+    "security_reasoning",
+    "edge_cases",
     "code_generation",
     "debugging",
     "refactoring",
@@ -118,7 +131,28 @@ def sentences(text: str) -> list[str]:
     return [normalize(p).strip() for p in parts if len(normalize(p).strip()) >= 45]
 
 
-def validate(examples: list[Example]) -> Validator:
+def load_taxonomy(raw_dir: Path) -> set[str]:
+    """The categories this corpus must cover.
+
+    ``taxonomy.txt`` in the raw directory lists them one per line (``#`` for
+    comments); without the file the built-in category list applies, which is what
+    the first dataset uses.
+    """
+    path = raw_dir / "taxonomy.txt"
+    if not path.exists():
+        return set(CATEGORIES)
+    names = {
+        line.strip()
+        for line in path.read_text(encoding="utf-8").splitlines()
+        if line.strip() and not line.strip().startswith("#")
+    }
+    if not names:
+        raise ValueError(f"{path} lists no categories")
+    return names
+
+
+def validate(examples: list[Example], taxonomy: set[str] | None = None) -> Validator:
+    taxonomy = taxonomy or set(CATEGORIES)
     v = Validator()
     seen_ids: Counter[str] = Counter()
 
@@ -131,7 +165,7 @@ def validate(examples: list[Example]) -> Validator:
             v.error(where, "id must be like 'py-debug-0001' (lowercase, dash-separated)")
         if not ex.category:
             v.error(where, "missing category in @meta")
-        elif ex.category not in CATEGORIES:
+        elif ex.category not in taxonomy:
             v.error(where, f"unknown category {ex.category!r}")
         if not ex.language:
             v.error(where, "missing language in @meta")
@@ -214,7 +248,7 @@ def validate(examples: list[Example]) -> Validator:
 
     # --- coverage gates ------------------------------------------------
     by_cat = Counter(ex.category for ex in examples)
-    for cat in sorted(CATEGORIES):
+    for cat in sorted(taxonomy):
         if by_cat[cat] < 4:
             v.error("coverage", f"category {cat} has only {by_cat[cat]} examples (need >= 4)")
 
@@ -233,7 +267,7 @@ def validate(examples: list[Example]) -> Validator:
     for ex in examples:
         if ex.verify_kind == "executable":
             executed[ex.category] += 1
-    for cat in sorted(CATEGORIES):
+    for cat in sorted(taxonomy):
         if executed[cat] < 1:
             v.error("coverage", f"category {cat} has no executable-verified example")
     return v
@@ -315,8 +349,9 @@ def main() -> int:
     args = ap.parse_args()
 
     raw_dir, out_dir = args.raw_dir, args.out_dir
+    taxonomy = load_taxonomy(raw_dir)
     examples = list(iter_raw_examples(raw_dir))
-    validator = validate(examples)
+    validator = validate(examples, taxonomy)
     records = build_records(examples)
 
     by_cat = Counter(r["category"] for r in records)

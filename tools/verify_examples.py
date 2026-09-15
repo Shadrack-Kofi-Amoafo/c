@@ -196,6 +196,8 @@ class Outcome:
     detail: str = ""
     notes: list[str] = field(default_factory=list)
     duration_s: float = 0.0
+    stdout: str = ""        # captured, for tools that inspect what the block printed
+    stderr: str = ""
 
 
 def _compare(stdout: str, expected: str) -> tuple[bool, str]:
@@ -362,6 +364,7 @@ def execute(rec: dict, workdir: Path) -> Outcome:
         out.duration_s = time.time() - start
         return out
 
+    out.stdout, out.stderr = so, se
     out.duration_s = time.time() - start
     if to:
         out.status = "FAIL"
@@ -458,6 +461,7 @@ def main() -> int:
     for o in outcomes:
         first_line = o.detail.splitlines()[0][:160].replace("|", "\\|")
         lines.append(f"| `{o.id}` | {o.kind} | {o.language} | {o.status} | {o.duration_s:.2f}s | {first_line} |")
+    filtered = bool(args.only or args.kind)
     if failed:
         lines += ["", "## Failures", ""]
         for o in failed:
@@ -469,8 +473,11 @@ def main() -> int:
             lines += [f"### {rec['id']}", "", note.strip(), ""]
 
     if not args.only and not args.kind:      # filtered runs must not clobber the report
-        report_path.parent.mkdir(parents=True, exist_ok=True)
-        report_path.write_text("\n".join(lines) + "\n", encoding="utf-8")
+        if filtered:
+            print("(filtered run: the full report was left untouched)", file=sys.stderr)
+        else:
+            report_path.parent.mkdir(parents=True, exist_ok=True)
+            report_path.write_text("\n".join(lines) + "\n", encoding="utf-8")
     print(f"\n{passed}/{len(outcomes)} passed, {len(failed)} failed, {len(skipped)} skipped -> {report_path}")
     return 1 if failed else 0
 
