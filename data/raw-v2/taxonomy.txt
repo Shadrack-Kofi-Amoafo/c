@@ -1,0 +1,14 @@
+# Categories required by the code-reasoning corpus (dataset-v2).
+# One name per line; every one needs >= 4 examples, at least one executable.
+debugging_reasoning
+execution_tracing
+dependency_reasoning
+algorithmic_reasoning
+complexity_analysis
+concurrency
+memory_behavior
+state_management
+api_behavior
+architecture_reasoning
+security_reasoning
+edge_cases

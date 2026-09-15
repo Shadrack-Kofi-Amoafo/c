@@ -1,0 +1,32 @@
+{
+  "assistant_chars_total": 136818,
+  "categories": {
+    "algorithmic_reasoning": 4,
+    "api_behavior": 4,
+    "architecture_reasoning": 4,
+    "complexity_analysis": 4,
+    "concurrency": 4,
+    "debugging_reasoning": 4,
+    "dependency_reasoning": 4,
+    "edge_cases": 4,
+    "execution_tracing": 4,
+    "memory_behavior": 4,
+    "security_reasoning": 4,
+    "state_management": 4
+  },
+  "difficulties": {
+    "advanced": 23,
+    "easy": 0,
+    "expert": 2,
+    "intermediate": 23
+  },
+  "estimated_tokens_total": 38005,
+  "examples": 48,
+  "languages": {
+    "javascript": 11,
+    "python": 37
+  },
+  "verification_kinds": {
+    "executable": 48
+  }
+}
